@@ -1,0 +1,7 @@
+document.querySelectorAll('.menu').forEach(b=>b.addEventListener('click',()=>document.querySelector('nav').classList.toggle('open')));
+const s=document.querySelector('#search'),c=document.querySelector('#category'),catalog=document.querySelector('#catalog'),empty=document.querySelector('#empty');
+function filter(){if(!catalog)return;let n=0;catalog.querySelectorAll('.product').forEach(p=>{let ok=p.dataset.name.toLowerCase().includes((s.value||'').toLowerCase())&&(c.value==='all'||p.dataset.cat===c.value);p.style.display=ok?'':'none';if(ok)n++});empty.hidden=n>0}
+s?.addEventListener('input',filter);c?.addEventListener('change',filter);
+document.querySelector('#cart')?.addEventListener('click',()=>document.querySelector('#cartmsg').textContent='Added to demo cart! Checkout is not connected.');
+document.querySelector('#sellerform')?.addEventListener('submit',e=>{e.preventDefault();document.querySelector('#sellermsg').textContent='Thanks! Seller interest submitted in this demo.';e.target.reset()});
+document.querySelector('#contactform')?.addEventListener('submit',e=>{e.preventDefault();document.querySelector('#contactmsg').textContent='Thanks! This demo form does not send messages.';e.target.reset()});
